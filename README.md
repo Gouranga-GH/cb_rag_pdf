@@ -14,28 +14,28 @@ A modular, conversational RAG (Retrieval-Augmented Generation) system built with
 ## Project Structure
 
 ```
-Mod_Custom_RAG_CH_FU_2127/
+cb_rag_pdf/
 ├── main.py                 # Main entry point
 ├── requirements.txt        # Python dependencies
-├── README.md              # Project documentation
+├── README.md               # Project documentation
 ├── config/
 │   ├── __init__.py
-│   └── settings.py        # Configuration and constants
+│   └── settings.py         # Configuration and constants
 ├── src/
 │   ├── __init__.py
-│   ├── app.py             # Main application orchestrator
+│   ├── app.py              # Main application orchestrator
 │   ├── document_processor.py  # PDF processing and vectorization
-│   ├── rag_chain.py       # RAG pipeline and conversational chains
-│   ├── session_manager.py # Chat history and session management
-│   └── ui_components.py   # Streamlit UI components
-└── utils/                 # Utility functions (future use)
+│   ├── rag_chain.py        # RAG pipeline and conversational chains
+│   ├── session_manager.py  # Chat history and session management
+│   └── ui_components.py    # Streamlit UI components
+└── screenshots/            # App screenshots
 ```
 
 ## Installation
 
 1. **Clone or navigate to the project directory**:
    ```bash
-   cd Mod_Custom_RAG_CH_FU_2127
+   cd cb_rag_pdf
    ```
 
 2. **Install dependencies**:

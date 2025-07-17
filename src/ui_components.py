@@ -1,19 +1,20 @@
 import streamlit as st
 from typing import List, Optional
 
-
+# Provides all Streamlit UI elements for the app
 class UIComponents:
     @staticmethod
     def setup_page():
-        """Setup the main page configuration"""
+        """
+        Set up the main page configuration (title, description, etc.)
+        """
         st.title("KnowFlow: Upload. Converse. Understand.")
         st.write("A blend of “conversation” and “insight”.")
     
     @staticmethod
     def get_api_key() -> Optional[str]:
         """
-        Get Groq API key from user input
-        
+        Prompt the user to enter their Groq API key (hidden input)
         Returns:
             API key string or None if not provided
         """
@@ -22,8 +23,7 @@ class UIComponents:
     @staticmethod
     def get_session_id() -> str:
         """
-        Get session ID from user input
-        
+        Prompt the user to enter a session ID for chat tracking
         Returns:
             Session ID string
         """
@@ -32,8 +32,7 @@ class UIComponents:
     @staticmethod
     def upload_files() -> List:
         """
-        File uploader for PDF files
-        
+        File uploader for PDF files (allows multiple files)
         Returns:
             List of uploaded files
         """
@@ -46,8 +45,7 @@ class UIComponents:
     @staticmethod
     def get_user_question() -> Optional[str]:
         """
-        Get user question input
-        
+        Prompt the user to enter a question for the chatbot
         Returns:
             User question string or None if not provided
         """
@@ -56,10 +54,9 @@ class UIComponents:
     @staticmethod
     def display_response(response: dict):
         """
-        Display the AI response
-        
+        Display the AI response in the main chat area
         Args:
-            response: Response dictionary from RAG chain
+            response: Response dictionary from RAG chain (expects 'answer' key)
         """
         st.write("Assistant:", response['answer'])
     
@@ -67,7 +64,6 @@ class UIComponents:
     def display_chat_history_sidebar(session_history, session_id: str = "default_session"):
         """
         Display chat history in a sidebar with human-readable format
-        
         Args:
             session_history: Chat message history object
             session_id: Session identifier for clearing history
@@ -75,7 +71,7 @@ class UIComponents:
         with st.sidebar:
             st.header("💬 Chat History")
             
-            # Add clear history button
+            # Add clear history button if there are messages
             if session_history.messages:
                 if st.button("🗑️ Clear History", key="clear_history"):
                     session_history.clear()
@@ -85,9 +81,9 @@ class UIComponents:
                 st.info("No chat history yet. Start a conversation!")
                 return
             
-            # Display messages in a readable format
+            # Display each message in a readable format
             for i, message in enumerate(session_history.messages):
-                # Check message type by class name to avoid import issues
+                # Determine message type (human or AI)
                 message_type = type(message).__name__
                 if "Human" in message_type:
                     st.markdown(f"**You:** {message.content}")
@@ -96,7 +92,6 @@ class UIComponents:
                 else:
                     # Fallback for other message types
                     st.markdown(f"**{message_type}:** {message.content}")
-                
                 # Add a separator between messages
                 if i < len(session_history.messages) - 1:
                     st.divider()
@@ -104,8 +99,7 @@ class UIComponents:
     @staticmethod
     def display_chat_history(session_history):
         """
-        Display chat history (legacy method - kept for compatibility)
-        
+        (Deprecated) Display chat history in the main area (use sidebar instead)
         Args:
             session_history: Chat message history object
         """
@@ -115,8 +109,7 @@ class UIComponents:
     @staticmethod
     def display_session_store(session_store: dict):
         """
-        Display session store for debugging
-        
+        Display the entire session store for debugging purposes
         Args:
             session_store: Dictionary containing all sessions
         """
@@ -125,8 +118,7 @@ class UIComponents:
     @staticmethod
     def show_warning(message: str):
         """
-        Display warning message
-        
+        Display a warning message to the user
         Args:
             message: Warning message to display
         """
@@ -135,8 +127,7 @@ class UIComponents:
     @staticmethod
     def show_success(message: str):
         """
-        Display success message
-        
+        Display a success message to the user
         Args:
             message: Success message to display
         """
@@ -145,8 +136,7 @@ class UIComponents:
     @staticmethod
     def show_info(message: str):
         """
-        Display info message
-        
+        Display an informational message to the user
         Args:
             message: Info message to display
         """
